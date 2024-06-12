@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Image, ScrollControls, Scroll, useScroll } from '@react-three/drei'
+import { Image, ScrollControls, Scroll, useScroll, PositionalAudio } from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
 import { easing } from 'maath'
 
@@ -28,11 +28,17 @@ function Minimap() {
     })
   })
   return (
+    <>
+     
     <group ref={ref}>
       {urls.map((_, i) => (
         <line key={i} geometry={geometry} material={material} position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]} />
       ))}
     </group>
+    <group>
+     <PositionalAudio  url='/new_Lady.mp3' autoplay loop distance={1}  />
+   </group>
+   </>
   )
 }
 
@@ -75,5 +81,6 @@ function Items({ w = 4, gap = 0.15 }) {
 export const App = () => (
   <Canvas gl={{ antialias: false }} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}>
     <Items />
+    
   </Canvas>
 )
