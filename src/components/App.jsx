@@ -1,5 +1,6 @@
+'use client'
 import * as THREE from 'three'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Image, ScrollControls, Scroll, useScroll, PositionalAudio } from '@react-three/drei'
 import { proxy, useSnapshot } from 'valtio'
@@ -9,7 +10,7 @@ const material = new THREE.LineBasicMaterial({ color: 'white' })
 const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.5, 0), new THREE.Vector3(0, 0.5, 0)])
 const state = proxy({
   clicked: null,
-  urls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 5, 7, 8, 2, 4, 9, 6].map((u) => `/${u}.jpg`)
+  urls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ].map((u) => `/${u}.jpg`)
 })
 
 function Minimap() {
@@ -17,6 +18,10 @@ function Minimap() {
   const scroll = useScroll()
   const { urls } = useSnapshot(state)
   const { height } = useThree((state) => state.viewport)
+
+ 
+
+  
   useFrame((state, delta) => {
     ref.current.children.forEach((child, index) => {
       // Give me a value between 0 and 1
@@ -29,7 +34,7 @@ function Minimap() {
   })
   return (
     <>
-     
+      
     <group ref={ref}>
       {urls.map((_, i) => (
         <line key={i} geometry={geometry} material={material} position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]} />
@@ -38,6 +43,7 @@ function Minimap() {
     <group>
      <PositionalAudio  url='/new_Lady.mp3' autoplay loop distance={1}  />
    </group>
+    
    </>
   )
 }
@@ -78,9 +84,13 @@ function Items({ w = 4, gap = 0.15 }) {
   )
 }
 
-export const App = () => (
-  <Canvas gl={{ antialias: false }} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}>
-    <Items />
-    
-  </Canvas>
-)
+export const App = () =>{
+ 
+
+  return (
+    <Canvas gl={{ antialias: false }} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}>
+      <Items />
+      
+    </Canvas>
+  )
+} 
