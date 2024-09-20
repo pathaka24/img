@@ -8,6 +8,20 @@ import Music from './Music';
 
 function Overlay() {
 
+ 
+   
+    return (
+      <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}>
+         
+        <Link href="https://www.madhuriapoem.com/" style={{ position: 'absolute', bottom: 40, left: 90, fontSize: '13px' }}>
+        Home
+        </Link>
+      
+      </div>
+    )
+  }
+
+const ImageContainer = () => {
   const audioRef = useRef(null);
   useEffect(() => {
     const audio = audioRef.current;
@@ -33,23 +47,6 @@ function Overlay() {
       });
     };
   }, []);
-   
-    return (
-      <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', width: '100%', height: '100%' }}>
-         
-        <Link href=" " style={{ position: 'absolute', bottom: 40, left: 90, fontSize: '13px' }}>
-        Home
-        </Link>
-        <audio ref={audioRef} autoPlay loop>
-      <source src="/new_Lady.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-      </div>
-    )
-  }
-
-const ImageContainer = () => {
- 
  
   return (
     <div className='w-full h-screen bg-black text-white'>
@@ -58,7 +55,10 @@ const ImageContainer = () => {
       <App />
     </Suspense>
     <Overlay />
-   <Music />
+    <audio ref={audioRef} autoPlay loop>
+      <source src="/new_Lady.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
     </div>
   )
 }
