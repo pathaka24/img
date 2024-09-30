@@ -10,7 +10,7 @@ const material = new THREE.LineBasicMaterial({ color: 'white' })
 const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.5, 0), new THREE.Vector3(0, 0.5, 0)])
 const state = proxy({
   clicked: null,
-  urls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ].map((u) => `/${u}.jpg`)
+  urls: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ].map((u) => `/${u}.jpg`)
 })
 
 function Minimap() {
@@ -40,10 +40,8 @@ function Minimap() {
         <line key={i} geometry={geometry} material={material} position={[i * 0.06 - urls.length * 0.03, -height / 2 + 0.6, 0]} />
       ))}
     </group>
-    <group>
-     <PositionalAudio  url='/new_Lady.mp3' autoplay loop distance={1}  />
-   </group>
     
+   <PositionalAudio url="/new_Lady.mp3" />
    </>
   )
 }
@@ -90,7 +88,7 @@ export const App = () =>{
   return (
     <Canvas gl={{ antialias: false }} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}>
       <Items />
-      
+      <PositionalAudio url="/new_Lady.mp3" />
     </Canvas>
   )
 } 
